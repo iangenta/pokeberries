@@ -15,6 +15,33 @@ Extracts and processes growth_time values.
 Caches results for 1 hour via Flask-Caching.
 Optionally generates a histogram to visualize the distribution.
 
+
+## Live Deployment
+
+Production URL: https://favourite-helene-asda-02cab572.koyeb.app/
+
+### Available Endpoints
+Endpoint :[/allBerryStats](https://favourite-helene-asda-02cab572.koyeb.app/allBerryStats)
+- method : GET
+- desc : Returns computed berry growth time statistics
+
+Endpoint : [/berryHistogram](https://favourite-helene-asda-02cab572.koyeb.app/berryHistogram)
+- method : GET
+- desc : Displays histogram visualization
+
+
+endpoint : [/health](https://favourite-helene-asda-02cab572.koyeb.app/health)
+- method : GET or HEAD
+- desc : Basic API health check
+
+Details
+- Hosted on Koyeb
+- Status: Healthy
+- Port: 8000 (aligned with Koyeb default)
+- Server: Gunicorn
+- Auto-deploys from GitHub main branch
+- Health monitored automatically by Koyeb
+
 ## Local Setup
 Clone the repo
 ``` python
@@ -36,12 +63,12 @@ install dependencies
 pip install -r requirements.txt
 ```
 
-Environment variables
+## Environment variables
 create a .env file in the project root
 
-POKEAPI_BASE_URL=https://example.com/
-CACHE_TIMEOUT=3600
-FLASK_ENV=production
+- POKEAPI_BASE_URL=https://example.com/
+- CACHE_TIMEOUT=3600
+- FLASK_ENV=production
 
 ## Run with docker
 
