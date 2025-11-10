@@ -1,9 +1,14 @@
 import logging
 import requests
+import io
+import base64
 from typing import Dict, List, Any
 from statistics import median, mean, variance
 from collections import Counter
 from config import POKEAPI_BASE_URL
+import matplotlib.pyplot as plt
+
+
 logger = logging.getLogger(__name__)
 
 EMPTY_STATS = {
@@ -104,3 +109,22 @@ def get_all_berry_stats()->Dict[str, Any]:
     } 
 
 
+def gen_histogram(growth_times: List[int]):
+    if not growth_times:
+        return ""
+    fig, ax = plt.subplots(figsize=(6, 4))
+    ax.hist(growth_times, bins=10, color="blue", edgecolor="black")
+    ax.set_title("Berry Growth Time Distribution")
+    ax.set_xlabel("Growth time")
+    ax.set_ylabel("Freq")
+
+    #save image to memory
+    buff = io.BytesIO()
+    plt.tight_layout()
+    plt.savefig(buff,format="png")
+    plt.close(fig)
+    buff.seek(0)
+
+    # encode image to embed in html
+    img_b64 = base64.b64encode(buff.read()).decode("utf-8")
+    return f"data:image/png;base64,{img_b64}"
