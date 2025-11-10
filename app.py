@@ -1,6 +1,6 @@
 # app.py
 from flask import Flask, jsonify, Response
-from services.berries_services import get_all_berry_stats
+from services.berries_service import get_all_berry_stats
 import logging
 
 logging.basicConfig(level=logging.ERROR, format="%(asctime)s [%(levelname)s] %(message)s")
