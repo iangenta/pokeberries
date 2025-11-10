@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, jsonify, Response
 from services.berries_service import get_all_berry_stats
 import logging
@@ -12,8 +11,9 @@ def all_berry_stats()->Response:
     """Endpoint to get statistics for all  berries"""
     data = get_all_berry_stats()
     response = jsonify(data)
-    response.headers["Content-Type"] ="application/json"
+    # Ensure content-type header is explicitly set
+    response.headers["Content-Type"] = "application/json"
     return response
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5000)
